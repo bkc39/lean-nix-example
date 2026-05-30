@@ -30,4 +30,5 @@ lake test
 lake exe mk_all --check
 leanblueprint web
 leanblueprint checkdecls
+python3 blueprint/source_links.py  # GitHub source links for the "Lean" buttons
 ```

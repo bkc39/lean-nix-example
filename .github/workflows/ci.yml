@@ -62,6 +62,9 @@ jobs:
       - run: nix develop -c lake build --wfail
       - run: nix develop -c leanblueprint web
       - run: nix develop -c leanblueprint checkdecls
+      # Generate a `find` redirector so the blueprint's "Lean" links resolve to
+      # the declaration's source on GitHub (we do not host doc-gen4 API docs).
+      - run: nix develop -c python3 blueprint/source_links.py
       - uses: actions/upload-pages-artifact@7b1f4a764d45c48632c6b24a0339c27f5614fb0b # v4
         with:
           path: blueprint/web
