@@ -65,7 +65,7 @@ jobs:
       # Generate a `find` redirector so the blueprint's "Lean" links resolve to
       # the declaration's source on GitHub (we do not host doc-gen4 API docs).
       - run: nix develop -c python3 blueprint/source_links.py
-      - uses: actions/upload-pages-artifact@7b1f4a764d45c48632c6b24a0339c27f5614fb0b # v4
+      - uses: actions/upload-pages-artifact@fc324d3547104276b827a68afc52ff2a11cc49c9 # v5.0.0
         with:
           path: blueprint/web
 
