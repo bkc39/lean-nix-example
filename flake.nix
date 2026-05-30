@@ -100,11 +100,12 @@
 
           packages.default = leanPackage;
 
+          # Only formatting runs under `nix flake check`. The Lean build/lint/
+          # test is covered authoritatively by the `lean` CI job (lean-action
+          # with the mathlib cache); building mathlib from source via lean4-nix
+          # here would be slow and uncached, so it is left to `nix build`.
           checks = {
             formatting = treefmtEval.config.build.check self;
-          }
-          // pkgs.lib.optionalAttrs pkgs.stdenv.isLinux {
-            lean-build = leanPackage;
           };
 
           formatter = pkgs.writeShellApplication {
