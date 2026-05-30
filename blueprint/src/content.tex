@@ -1,0 +1,26 @@
+\chapter{Starter Incidence Geometry}
+
+\begin{definition}[Incidence geometry]
+  \label{def:geometry}
+  \lean{IncidenceGeometry.Geometry, IncidenceGeometry.Geometry.Inc}
+  \leanok
+  An incidence geometry consists of a type of points, a type of lines, and an
+  incidence relation between points and lines.
+\end{definition}
+
+\begin{definition}[Collinearity]
+  \label{def:collinear}
+  \lean{IncidenceGeometry.Collinear}
+  \leanok
+  \uses{def:geometry}
+  Three points are collinear when there is a line incident with all three.
+\end{definition}
+
+\begin{definition}[Incidence graph]
+  \label{def:incidenceGraph}
+  \lean{IncidenceGeometry.incidenceGraph}
+  \leanok
+  \uses{def:geometry}
+  The incidence graph is the bipartite graph on points and lines whose edges
+  record the incidence relation.
+\end{definition}

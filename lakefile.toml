@@ -1,0 +1,21 @@
+name = "incidence_geometry"
+version = "0.1.0"
+defaultTargets = ["IncidenceGeometry"]
+lintDriver = "batteries/runLinter"
+testDriver = "IncidenceGeometryTest"
+
+[[require]]
+name = "mathlib"
+scope = "leanprover-community"
+rev = "v4.30.0"
+
+[[require]]
+name = "checkdecls"
+git = "https://github.com/PatrickMassot/checkdecls.git"
+
+[[lean_lib]]
+name = "IncidenceGeometry"
+
+[[lean_exe]]
+name = "IncidenceGeometryTest"
+root = "IncidenceGeometryTest"
