@@ -62,3 +62,24 @@ jobs:
       - run: nix develop -c lake build --wfail
       - run: nix develop -c leanblueprint web
       - run: nix develop -c leanblueprint checkdecls
+      - uses: actions/upload-pages-artifact@7b1f4a764d45c48632c6b24a0339c27f5614fb0b # v4
+        with:
+          path: blueprint/web
+
+  deploy:
+    name: Deploy blueprint to GitHub Pages
+    needs: blueprint
+    if: github.event_name == 'push' && (github.ref == 'refs/heads/main' || github.ref == 'refs/heads/master')
+    runs-on: ubuntu-latest
+    permissions:
+      pages: write
+      id-token: write
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    concurrency:
+      group: github-pages
+      cancel-in-progress: false
+    steps:
+      - id: deployment
+        uses: actions/deploy-pages@d6db90164ac5ed86f2b6aed7e0febac5b3c0c03e # v4
