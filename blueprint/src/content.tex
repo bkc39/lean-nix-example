@@ -1,26 +1,67 @@
-\chapter{Starter Incidence Geometry}
+\chapter{Irrationality of \texorpdfstring{$\sqrt{2}$}{the square root of 2}}
 
-\begin{definition}[Incidence geometry]
-  \label{def:geometry}
-  \lean{IncidenceGeometry.Geometry, IncidenceGeometry.Geometry.Inc}
-  \leanok
-  An incidence geometry consists of a type of points, a type of lines, and an
-  incidence relation between points and lines.
-\end{definition}
+This short chapter formalises the classical proof that $\sqrt{2}$ is
+irrational. The argument is deliberately layered so that the dependency graph
+has some structure: a single primality fact feeds a descent lemma, which feeds
+the rational obstruction, which in turn yields irrationality over the reals.
 
-\begin{definition}[Collinearity]
-  \label{def:collinear}
-  \lean{IncidenceGeometry.Collinear}
+\begin{lemma}[Two divides a square implies two divides the root]
+  \label{lem:two-dvd-sq}
+  \lean{Playground.two_dvd_of_two_dvd_sq}
   \leanok
-  \uses{def:geometry}
-  Three points are collinear when there is a line incident with all three.
-\end{definition}
+  For every natural number $n$, if $2 \mid n^2$ then $2 \mid n$.
+\end{lemma}
 
-\begin{definition}[Incidence graph]
-  \label{def:incidenceGraph}
-  \lean{IncidenceGeometry.incidenceGraph}
+\begin{proof}
   \leanok
-  \uses{def:geometry}
-  The incidence graph is the bipartite graph on points and lines whose edges
-  record the incidence relation.
-\end{definition}
+  Since $2$ is prime, $2 \mid n^2$ forces $2$ to divide one of the factors,
+  hence $2 \mid n$.
+\end{proof}
+
+\begin{lemma}[No coprime solution to $p^2 = 2q^2$]
+  \label{lem:descent}
+  \lean{Playground.sq_ne_two_mul_sq}
+  \leanok
+  \uses{lem:two-dvd-sq}
+  If $p$ and $q$ are coprime natural numbers, then $p^2 \neq 2 q^2$.
+\end{lemma}
+
+\begin{proof}
+  \leanok
+  \uses{lem:two-dvd-sq}
+  Suppose $p^2 = 2 q^2$. Then $2 \mid p^2$, so $2 \mid p$ by
+  Lemma~\ref{lem:two-dvd-sq}. Writing $p = 2k$ gives $q^2 = 2 k^2$, so $2 \mid
+  q^2$ and therefore $2 \mid q$. Then $2$ divides $\gcd(p, q) = 1$, which is
+  impossible.
+\end{proof}
+
+\begin{theorem}[No rational square root of two]
+  \label{thm:no-rat-sq}
+  \lean{Playground.not_exists_rat_sq_eq_two}
+  \leanok
+  \uses{lem:descent}
+  There is no rational number $q$ with $q^2 = 2$.
+\end{theorem}
+
+\begin{proof}
+  \leanok
+  \uses{lem:descent}
+  Write a hypothetical solution $q$ as $a / b$ in lowest terms, so that $a$ and
+  $b$ are coprime and $b \neq 0$. Clearing denominators turns $q^2 = 2$ into
+  $a^2 = 2 b^2$, contradicting Lemma~\ref{lem:descent}.
+\end{proof}
+
+\begin{theorem}[Irrationality of $\sqrt{2}$]
+  \label{thm:irrational-sqrt-two}
+  \lean{Playground.irrational_sqrt_two}
+  \leanok
+  \uses{thm:no-rat-sq}
+  The real number $\sqrt{2}$ is irrational.
+\end{theorem}
+
+\begin{proof}
+  \leanok
+  \uses{thm:no-rat-sq}
+  If $\sqrt{2}$ were rational, say equal to $q \in \mathbb{Q}$, then squaring
+  gives $q^2 = 2$, contradicting Theorem~\ref{thm:no-rat-sq}.
+\end{proof}

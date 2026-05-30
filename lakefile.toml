@@ -1,8 +1,8 @@
-name = "incidence_geometry"
+name = "playground"
 version = "0.1.0"
-defaultTargets = ["IncidenceGeometry"]
+defaultTargets = ["Playground"]
 lintDriver = "batteries/runLinter"
-testDriver = "IncidenceGeometryTest"
+testDriver = "PlaygroundTest"
 
 [[require]]
 name = "mathlib"
@@ -14,8 +14,8 @@ name = "checkdecls"
 git = "https://github.com/PatrickMassot/checkdecls.git"
 
 [[lean_lib]]
-name = "IncidenceGeometry"
+name = "Playground"
 
 [[lean_exe]]
-name = "IncidenceGeometryTest"
-root = "IncidenceGeometryTest"
+name = "PlaygroundTest"
+root = "PlaygroundTest"

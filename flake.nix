@@ -1,5 +1,5 @@
 {
-  description = "Lean 4 incidence geometry project with mathlib and Nix";
+  description = "Lean 4 + mathlib blueprint demo (irrationality of sqrt 2), pinned with Nix";
 
   inputs = {
     nixpkgs.follows = "lean4-nix/nixpkgs";
@@ -68,8 +68,17 @@
           };
           lake2nix = pkgs.callPackage lean4-nix.lake { };
           leanPackage = lake2nix.mkPackage {
-            name = "IncidenceGeometry";
+            name = "Playground";
             src = ./.;
+            # checkdecls is an executable-only package (no `lean_lib`), so
+            # lean4-nix's default `buildPhase` of `lake build Checkdecls:shared`
+            # fails with "unknown target `Checkdecls`". Disabling the library
+            # facet build for it leaves only `lake build checkdecls` (the exe).
+            depOverride = {
+              checkdecls = {
+                buildLibrary = false;
+              };
+            };
           };
           treefmtEval = treefmt-nix.lib.evalModule pkgs {
             projectRootFile = "flake.nix";

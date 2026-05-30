@@ -1,6 +1,9 @@
-# IncidenceGeometry
+# Playground
 
-A Lean 4 project for incidence geometry, using mathlib and pinned with Nix.
+A small Lean 4 + mathlib project, pinned with Nix, used as a blueprint demo. It
+formalises the classical theorem that `√2` is irrational and wires the proof
+into a [leanblueprint](https://github.com/PatrickMassot/leanblueprint)
+dependency graph published to GitHub Pages.
 
 ## Development
 
