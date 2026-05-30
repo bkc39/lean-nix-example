@@ -118,11 +118,13 @@
             packages =
               (with pkgs; [
                 elan
+                ghostscript
                 graphviz
                 just
                 nixfmt-rfc-style
                 nodePackages.prettier
                 python3Packages.leanblueprint
+                texliveMedium
               ])
               ++ pkgs.lib.optionals pkgs.stdenv.isLinux (
                 with pkgs.lean;
